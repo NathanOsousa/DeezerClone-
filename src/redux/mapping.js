@@ -1,0 +1,3 @@
+// songs actions
+export const SET_FAVOURITE_SONGS = 'SET_FAVOURITE_SONGS';
+export const RESET_FAVOURITE_SONGS = 'RESET_FAVOURITE_SONGS';
