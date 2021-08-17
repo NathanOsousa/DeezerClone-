@@ -5,6 +5,8 @@ import {setFavouriteSongs} from '../../Redux/actions/favoriteSongs';
 import {connect} from 'react-redux';
 import List from '../../Components/List';
 
+import styles from './styles';
+
 const Home = ({dispatch, favouriteSongs}) => {
   useEffect(() => {
     getTrendingSongs();
@@ -17,10 +19,8 @@ const Home = ({dispatch, favouriteSongs}) => {
   };
 
   return (
-    <SafeAreaView style={{flexGrow: 1}}>
-      {/* <ScrollView contentInsetAdjustmentBehavior="automatic"> */}
-      <List data={favouriteSongs} />
-      {/* </ScrollView> */}
+    <SafeAreaView style={styles.container}>
+      <List data={favouriteSongs && favouriteSongs} />
     </SafeAreaView>
   );
 };

@@ -7,9 +7,21 @@ import {View, Text} from 'react-native';
 // Um botão para adicionar a música na lista de músicas favoritas;
 import styles from './styles';
 
-const ListItem = ({data, index}) => {
+interface ItemProps {
+  data: {
+    title: string;
+    artist: {
+      name: string;
+    };
+    duration: number;
+    id: number;
+  };
+  key?: number;
+}
+
+const ListItem = ({data, key}: ItemProps) => {
   return (
-    <View key={index}>
+    <View key={data.id}>
       <Text>nome: {data.title}</Text>
       <Text>cantor: {data.artist.name}</Text>
       <Text>duração: {data.duration}</Text>
