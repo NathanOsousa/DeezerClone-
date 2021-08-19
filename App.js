@@ -1,4 +1,5 @@
 import React from 'react';
+import {StatusBar} from 'react-native';
 import {Provider} from 'react-redux';
 import songsReducer from './src/Redux/reducer/index';
 import {createStore} from 'redux';
@@ -8,6 +9,11 @@ const store = createStore(songsReducer);
 const App = () => {
   return (
     <Provider store={store}>
+      <StatusBar
+        backgroundColor="transparent"
+        translucent
+        barStyle="light-content"
+      />
       <HomePage />
     </Provider>
   );

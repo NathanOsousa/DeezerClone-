@@ -3,13 +3,29 @@ import {StyleSheet} from 'react-native';
 const styles = StyleSheet.create({
   container: {
     flexGrow: 1,
-    backgroundColor: 'rgba(0, 0, 0, 0.2)',
-    height: 60,
-    borderRadius: 15,
+    paddingHorizontal: 10,
+    paddingVertical: 12,
+    borderRadius: 4,
+    backgroundColor: '#413A6F',
     justifyContent: 'center',
   },
-  more: {},
-  preview: {},
-  addFavourites: {},
+  content: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+  },
+  textContainer: {
+    maxWidth: 200,
+    alignItems: 'center',
+  },
+  image: {
+    height: 50,
+    width: 50,
+    borderRadius: 25,
+    resizeMode: 'contain',
+  },
+  text: {
+    color: '#F5F4F8',
+  },
 });
 export default styles;

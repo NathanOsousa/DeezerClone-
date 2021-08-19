@@ -17,7 +17,8 @@
     "react": "17.0.1",
     "react-native": "0.64.2",
     "react-redux": "^7.2.4",
-    "redux": "^4.1.1"
+    "redux": "^4.1.1",
+    "styled-components": "^5.3.0"
   },
   "devDependencies": {
     "@babel/core": "^7.15.0",
@@ -43,5 +44,8 @@
   },
   "jest": {
     "preset": "react-native"
+  },
+  "resolutions": {
+    "styled-components": "^5"
   }
 }

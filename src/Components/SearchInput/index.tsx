@@ -17,10 +17,6 @@ export function SearchInput() {
     console.log('🚀 ~ file: index.tsx ~ line 22 ~ handleSearch ~ data', data);
     // dispatch(setFavouriteSongs(data)); TODO: ENVIAR PARA UM REDUCER QUE A PAGINA USARÁ
   };
-  // async function handleAddNewTask() {
-  //   await handleSearch(query);
-  //   setQuery('');
-  // }
 
   return (
     <View
@@ -32,14 +28,11 @@ export function SearchInput() {
       ]}>
       <TextInput
         style={styles.input}
-        placeholder="Adicionar novo todo..."
-        // placeholderTextColor={ ? '#E1E1E6' : '#212136'}
+        placeholder="Pesquisar música, artista etc ..."
         placeholderTextColor={'#212136'}
         returnKeyType="send"
         onChangeText={item => setQuery(item)}
         value={query}
-        // onSubmitEditing={handleAddNewTask}
-        // onSubmitEditing={handleSearch}
       />
       <TouchableOpacity
         testID="add-new-task-button"
@@ -54,7 +47,6 @@ export function SearchInput() {
 
 const styles = StyleSheet.create({
   inputContainer: {
-    // backgroundColor:   ? '#413A6F' : '#F5F4F8',
     backgroundColor: '#413A6F',
     borderRadius: 5,
     marginTop: -25,

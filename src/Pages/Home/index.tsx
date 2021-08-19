@@ -5,6 +5,7 @@ import {setFavouriteSongs} from '../../Redux/actions/favoriteSongs';
 import {connect} from 'react-redux';
 import List from '../../Components/List';
 import {SearchInput} from '../../Components/SearchInput';
+import {Header} from '../../Components/Header';
 
 import styles from './styles';
 
@@ -20,6 +21,7 @@ const Home = ({dispatch, favouriteSongs}) => {
 
   return (
     <SafeAreaView style={styles.container}>
+      <Header />
       <SearchInput />
       <List data={favouriteSongs && favouriteSongs} />
     </SafeAreaView>
