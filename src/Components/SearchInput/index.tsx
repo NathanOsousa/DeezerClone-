@@ -8,14 +8,17 @@ import {
   View,
 } from 'react-native';
 import {requestSearchSongs} from '../../Service/api';
+import {connect} from 'react-redux';
+import {setSearchedSongs} from '../../Redux/actions/searchedSongs';
 
-export function SearchInput() {
+const search_icon = require('../../Assets/Images/search_icon.png');
+
+function SearchInput({dispatch}) {
   const [query, setQuery] = useState('');
 
   const handleSearch = async (query: string) => {
     const {data} = await requestSearchSongs(query);
-    console.log('🚀 ~ file: index.tsx ~ line 22 ~ handleSearch ~ data', data);
-    // dispatch(setFavouriteSongs(data)); TODO: ENVIAR PARA UM REDUCER QUE A PAGINA USARÁ
+    dispatch(setSearchedSongs(data));
   };
 
   return (
@@ -39,11 +42,21 @@ export function SearchInput() {
         activeOpacity={0.7}
         style={styles.addButton}
         onPress={() => handleSearch(query)}>
-        {/* <Image source={checkIcon} /> styledComponnents pra icone de pesquisa*/}
+        <Image source={search_icon} />
       </TouchableOpacity>
     </View>
   );
 }
+
+const mapStateToProps = state => ({
+  favouriteSongs: state.favouriteSongs,
+});
+
+function mapDispatchToProps(dispatch) {
+  return {dispatch};
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(SearchInput);
 
 const styles = StyleSheet.create({
   inputContainer: {
