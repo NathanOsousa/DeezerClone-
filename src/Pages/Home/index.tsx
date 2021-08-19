@@ -1,9 +1,10 @@
 import React, {useEffect} from 'react';
 import {SafeAreaView, ScrollView, Text} from 'react-native';
-import {requestTrendingSongs} from '../../Service/api';
+import {requestTrendingSongs, requestSearchSongs} from '../../Service/api';
 import {setFavouriteSongs} from '../../Redux/actions/favoriteSongs';
 import {connect} from 'react-redux';
 import List from '../../Components/List';
+import {SearchInput} from '../../Components/SearchInput';
 
 import styles from './styles';
 
@@ -14,12 +15,12 @@ const Home = ({dispatch, favouriteSongs}) => {
 
   const getTrendingSongs = async () => {
     const {data} = await requestTrendingSongs();
-
     dispatch(setFavouriteSongs(data));
   };
 
   return (
     <SafeAreaView style={styles.container}>
+      <SearchInput />
       <List data={favouriteSongs && favouriteSongs} />
     </SafeAreaView>
   );

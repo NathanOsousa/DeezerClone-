@@ -21,7 +21,7 @@ interface ItemProps {
 
 const ListItem = ({data, key}: ItemProps) => {
   return (
-    <View key={data.id}>
+    <View style={styles.container} key={data.id}>
       <Text>nome: {data.title}</Text>
       <Text>cantor: {data.artist.name}</Text>
       <Text>duração: {data.duration}</Text>
