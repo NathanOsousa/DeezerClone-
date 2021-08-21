@@ -1,5 +1,8 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {View, Text, Image, Pressable} from 'react-native';
+import Icon from 'react-native-vector-icons/Ionicons';
+import {setFavouriteSongs} from '../../Redux/actions/favoriteSongs';
+import {connect} from 'react-redux';
 
 // Os dados da música como (capa do álbum, título, cantor, duração);
 // Um botão para acessar a musica completa no Deezer;
@@ -21,18 +24,28 @@ interface ItemProps {
     };
   };
   key?: number;
+  dispatch: any; // TODO: mapear método
 }
 
-const ListItem = ({data, key}: ItemProps) => {
+const ListItem = ({data, key, dispatch}: ItemProps) => {
+  const [wasPressed, setWasPressed] = useState(false);
+  const handleIcon = () => {
+    return wasPressed ? 'bookmark' : 'bookmark-outline';
+  };
+  const handleAddToFavourites = async () => {
+    // TODO: Remover da lista
+    await dispatch(setFavouriteSongs([data]));
+    setWasPressed(!wasPressed);
+  };
   return (
     <View style={styles.container} key={data.id}>
       <View style={styles.content}>
-        <Pressable
-          onPress={() => {
-            /*play preview*/
-          }}>
-          <Image source={play_button} style={styles.image} />
-        </Pressable>
+        <View>
+          <Image
+            source={{uri: data?.album?.cover_medium}}
+            style={styles.image}
+          />
+        </View>
         <View style={styles.textContainer}>
           <Text style={styles.text}>nome: {data.title.slice(0, 450)}</Text>
           <Text style={styles.text}>
@@ -42,16 +55,24 @@ const ListItem = ({data, key}: ItemProps) => {
         </View>
         <Pressable
           onPress={() => {
-            // add to favourites
+            /*play preview*/
           }}>
-          <Image
-            source={{uri: data?.album?.cover_medium}}
-            style={styles.image}
-          />
+          <Image source={play_button} style={styles.image} />
+        </Pressable>
+        <Pressable
+          style={{justifyContent: 'center', alignItems: 'center'}}
+          onPress={handleAddToFavourites}>
+          <Icon name={handleIcon()} size={50} color="#FFF" />
         </Pressable>
       </View>
     </View>
   );
 };
 
-export default ListItem;
+const mapStateToProps = state => ({});
+
+function mapDispatchToProps(dispatch) {
+  return {dispatch};
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ListItem);

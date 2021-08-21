@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {
   Image,
   Platform,
@@ -10,16 +10,25 @@ import {
 import {requestSearchSongs} from '../../Service/api';
 import {connect} from 'react-redux';
 import {setSearchedSongs} from '../../Redux/actions/searchedSongs';
+import {setCurrentList} from '../../Redux/actions/currentList';
 
 const search_icon = require('../../Assets/Images/search_icon.png');
 
-function SearchInput({dispatch}) {
+function SearchInput({dispatch, searchedSongs}) {
   const [query, setQuery] = useState('');
 
   const handleSearch = async (query: string) => {
     const {data} = await requestSearchSongs(query);
     dispatch(setSearchedSongs(data));
+    dispatch(setCurrentList('search'));
   };
+  useEffect(() => {
+    dispatch(
+      setCurrentList(
+        query.length >= 3 && searchedSongs ? 'search' : 'trending',
+      ),
+    );
+  });
 
   return (
     <View
@@ -38,7 +47,6 @@ function SearchInput({dispatch}) {
         value={query}
       />
       <TouchableOpacity
-        testID="add-new-task-button"
         activeOpacity={0.7}
         style={styles.addButton}
         onPress={() => handleSearch(query)}>
@@ -49,7 +57,7 @@ function SearchInput({dispatch}) {
 }
 
 const mapStateToProps = state => ({
-  favouriteSongs: state.favouriteSongs,
+  searchedSongs: state.searchedSongs,
 });
 
 function mapDispatchToProps(dispatch) {

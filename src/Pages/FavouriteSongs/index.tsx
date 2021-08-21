@@ -6,9 +6,10 @@ import {Header} from '../../Components/Header';
 
 import styles from './styles';
 
-const FavouriteSongs = ({favouriteSongs}) => {
+const FavouriteSongs = ({favouriteSongs, state}) => {
   return (
     <SafeAreaView style={styles.container}>
+      <Header />
       <List data={favouriteSongs && favouriteSongs} />
     </SafeAreaView>
   );
@@ -16,6 +17,7 @@ const FavouriteSongs = ({favouriteSongs}) => {
 
 const mapStateToProps = state => ({
   favouriteSongs: state.favouriteSongs,
+  state: state,
 });
 
 function mapDispatchToProps(dispatch) {
