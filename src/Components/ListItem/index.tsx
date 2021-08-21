@@ -1,14 +1,9 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {View, Text, Image, Pressable} from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import {setFavouriteSongs} from '../../Redux/actions/favoriteSongs';
 import {connect} from 'react-redux';
 import TrackPlayer from 'react-native-track-player';
-
-// Os dados da música como (capa do álbum, título, cantor, duração);
-// Um botão para acessar a musica completa no Deezer;
-// Um botão de play/pause para escutar a prévia da música;
-// Um botão para adicionar a música na lista de músicas favoritas;
 import styles from './styles';
 const play_button = require('../../Assets/Images/play_button.png');
 const favourite = require('../../Assets/Images/favourite.png');
@@ -34,6 +29,7 @@ interface ItemProps {
 
 const ListItem = ({data, key, dispatch}: ItemProps) => {
   const [wasPressed, setWasPressed] = useState(false);
+  const [duration, setDuration] = useState('');
   const handleAddToFavourites = async () => {
     // TODO: Remover da lista
     await dispatch(setFavouriteSongs([data]));
@@ -52,6 +48,20 @@ const ListItem = ({data, key, dispatch}: ItemProps) => {
     await TrackPlayer.add(track);
     await TrackPlayer.play();
   };
+
+  useEffect(() => {
+    if (data.duration >= 99) {
+      const firstPart = data.duration.toString()[0];
+
+      const finalString = `${firstPart}:${data.duration
+        .toString()
+        .slice(1, 3)}`;
+      setDuration(finalString);
+    } else {
+      const finalString = `0:${data.duration.toString().slice(0, 3)}`;
+      setDuration(finalString);
+    }
+  }, []);
   return (
     <View style={styles.container} key={data.id}>
       <View style={styles.content}>
@@ -62,11 +72,10 @@ const ListItem = ({data, key, dispatch}: ItemProps) => {
           />
         </View>
         <View style={styles.textContainer}>
-          <Text style={styles.text}>nome: {data.title.slice(0, 450)}</Text>
-          <Text style={styles.text}>
-            cantor: {data.artist.name.slice(0, 50)}
-          </Text>
-          <Text style={styles.text}>duração: {data.duration}</Text>
+          <Text style={styles.text}>{data.title.slice(0, 450)}</Text>
+          <Text style={styles.text}>{data.artist.name.slice(0, 50)}</Text>
+
+          <Text style={styles.text}>{duration}</Text>
         </View>
         <Pressable onPress={handlePlayPreview}>
           <Image source={play_button} style={styles.image} />

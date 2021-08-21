@@ -18,7 +18,7 @@ const settings = ({route}) => ({
 
     if (route.name === 'Home') {
       iconName = focused ? 'home' : 'home-outline';
-    } else if (route.name === 'Fav') {
+    } else if (route.name === 'Favourites') {
       iconName = focused ? 'star' : 'star-outline';
     }
 
@@ -37,7 +37,7 @@ const Tabs = () => {
   return (
     <Tab.Navigator screenOptions={settings}>
       <Tab.Screen name="Home" component={HomePage} />
-      <Tab.Screen name="Fav" component={FavouriteSongs} />
+      <Tab.Screen name="Favourites" component={FavouriteSongs} />
     </Tab.Navigator>
   );
 };
@@ -53,25 +53,8 @@ const App = () => {
       <NavigationContainer>
         <Tabs />
       </NavigationContainer>
-      {/* <HomePage /> */}
     </Provider>
   );
 };
 
 export default App;
-
-// import * as React from 'react';
-// import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-// import {NavigationContainer} from '@react-navigation/native';
-// import Home from './src/Pages/Home';
-// import Books from './src/Pages/Books';
-// import Icon from 'react-native-vector-icons/Ionicons';
-
-// function App() {
-//   return (
-//     <NavigationContainer screnn>
-//       <Tabs />
-//     </NavigationContainer>
-//   );
-// }
-// export default App;
