@@ -1,6 +1,5 @@
 import React, {useState, useEffect} from 'react';
 import {View, Text, Image, Pressable} from 'react-native';
-import Icon from 'react-native-vector-icons/Ionicons';
 import {setFavouriteSongs} from '../../Redux/actions/favoriteSongs';
 import {connect} from 'react-redux';
 import TrackPlayer from 'react-native-track-player';

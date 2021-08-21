@@ -1,8 +1,6 @@
 import React from 'react';
 import {FlatList} from 'react-native';
 import ListItem from '../ListItem';
-
-// import { Container } from './styles';
 interface ListProps {
   data: [
     {
