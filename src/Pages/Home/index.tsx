@@ -23,7 +23,7 @@ const Home = ({dispatch, favouriteSongs, searchedSongs}) => {
     <SafeAreaView style={styles.container}>
       <Header />
       <SearchInput />
-      <List data={favouriteSongs && favouriteSongs} />
+      <List data={favouriteSongs} />
     </SafeAreaView>
   );
 };

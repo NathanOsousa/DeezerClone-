@@ -2,7 +2,6 @@ import {StyleSheet, StatusBar} from 'react-native';
 
 const styles = StyleSheet.create({
   header: {
-    flexGrow: 1,
     paddingTop: StatusBar.currentHeight,
     paddingBottom: 44,
     backgroundColor: '#191932',

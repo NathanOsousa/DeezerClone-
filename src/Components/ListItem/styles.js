@@ -5,6 +5,7 @@ const styles = StyleSheet.create({
     flexGrow: 1,
     paddingHorizontal: 10,
     paddingVertical: 12,
+    marginVertical: 12,
     borderRadius: 4,
     backgroundColor: '#413A6F',
     justifyContent: 'center',

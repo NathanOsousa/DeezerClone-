@@ -1,4 +1,4 @@
 export const INITIAL_STATE = {
-  favouriteSongs: {},
+  favouriteSongs: [],
   searchedSongs: {},
 };
