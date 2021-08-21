@@ -16,7 +16,7 @@ export default function songsReducer(state = INITIAL_STATE, action) {
     case SET_FAVOURITE_SONGS:
       return update(state, {
         favouriteSongs: {
-          $set: action.info,
+          $push: action.info,
         },
       });
     case RESET_FAVOURITE_SONGS:

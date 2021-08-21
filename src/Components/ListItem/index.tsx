@@ -3,6 +3,7 @@ import {View, Text, Image, Pressable} from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import {setFavouriteSongs} from '../../Redux/actions/favoriteSongs';
 import {connect} from 'react-redux';
+import TrackPlayer from 'react-native-track-player';
 
 // Os dados da música como (capa do álbum, título, cantor, duração);
 // Um botão para acessar a musica completa no Deezer;
@@ -10,6 +11,8 @@ import {connect} from 'react-redux';
 // Um botão para adicionar a música na lista de músicas favoritas;
 import styles from './styles';
 const play_button = require('../../Assets/Images/play_button.png');
+const favourite = require('../../Assets/Images/favourite.png');
+const favouriteOff = require('../../Assets/Images/favouriteOff.png');
 
 interface ItemProps {
   data: {
@@ -21,7 +24,9 @@ interface ItemProps {
     id: number;
     album: {
       cover_medium: string;
+      title: string;
     };
+    preview: string;
   };
   key?: number;
   dispatch: any; // TODO: mapear método
@@ -29,13 +34,23 @@ interface ItemProps {
 
 const ListItem = ({data, key, dispatch}: ItemProps) => {
   const [wasPressed, setWasPressed] = useState(false);
-  const handleIcon = () => {
-    return wasPressed ? 'bookmark' : 'bookmark-outline';
-  };
   const handleAddToFavourites = async () => {
     // TODO: Remover da lista
     await dispatch(setFavouriteSongs([data]));
     setWasPressed(!wasPressed);
+  };
+  const handlePlayPreview = async () => {
+    await TrackPlayer.setupPlayer();
+
+    var track = {
+      url: data.preview,
+      title: data.title,
+      artist: data.artist.name,
+      album: data.album.title,
+    };
+
+    await TrackPlayer.add(track);
+    await TrackPlayer.play();
   };
   return (
     <View style={styles.container} key={data.id}>
@@ -53,16 +68,16 @@ const ListItem = ({data, key, dispatch}: ItemProps) => {
           </Text>
           <Text style={styles.text}>duração: {data.duration}</Text>
         </View>
-        <Pressable
-          onPress={() => {
-            /*play preview*/
-          }}>
+        <Pressable onPress={handlePlayPreview}>
           <Image source={play_button} style={styles.image} />
         </Pressable>
         <Pressable
           style={{justifyContent: 'center', alignItems: 'center'}}
           onPress={handleAddToFavourites}>
-          <Icon name={handleIcon()} size={50} color="#FFF" />
+          <Image
+            source={!wasPressed ? favourite : favouriteOff}
+            style={styles.imageRectangular}
+          />
         </Pressable>
       </View>
     </View>

@@ -24,6 +24,11 @@ const styles = StyleSheet.create({
     borderRadius: 25,
     resizeMode: 'contain',
   },
+  imageRectangular: {
+    height: 50,
+    width: 50,
+    resizeMode: 'contain',
+  },
   text: {
     color: '#F5F4F8',
   },

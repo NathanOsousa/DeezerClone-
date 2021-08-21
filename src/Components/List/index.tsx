@@ -57,7 +57,6 @@ const List = ({data}: ListProps) => {
       contentContainerStyle={{
         flexGrow: 1,
         padding: 20,
-        justifyContent: 'space-between',
       }}
     />
   );
