@@ -68,7 +68,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(SearchInput);
 
 const styles = StyleSheet.create({
   inputContainer: {
-    backgroundColor: '#413A6F',
+    backgroundColor: '#FFFFFF',
     borderRadius: 5,
     marginTop: -25,
     marginHorizontal: 40,
@@ -95,7 +95,7 @@ const styles = StyleSheet.create({
     elevation: 5,
   },
   addButton: {
-    backgroundColor: '#9347CA',
+    backgroundColor: '#3FAD27',
 
     height: 50,
     paddingHorizontal: 16,

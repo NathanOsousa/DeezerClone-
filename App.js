@@ -22,16 +22,18 @@ const settings = ({route}) => ({
       iconName = focused ? 'star' : 'star-outline';
     }
 
-    return <Icon name={iconName} size={size} color={color} />;
+    return <Icon name={iconName} size={size} color="#000" />;
   },
   tabBarStyle: {
-    backgroundColor: '#191932',
+    backgroundColor: '#FFFFFF',
     borderTopWidth: 0,
   },
-  tabBarActiveTintColor: '#FFF',
-  tabBarInactiveTintColor: 'gray',
+  tabBarActiveTintColor: '#000',
+  tabBarInactiveTintColor: '#000',
   headerShown: false,
 });
+
+// ...
 
 const Tabs = () => {
   return (
@@ -45,11 +47,11 @@ const Tabs = () => {
 const App = () => {
   return (
     <Provider store={store}>
-      <StatusBar
+      {/* <StatusBar
         backgroundColor="transparent"
         translucent
         barStyle="light-content"
-      />
+      /> */}
       <NavigationContainer>
         <Tabs />
       </NavigationContainer>

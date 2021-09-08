@@ -6,7 +6,7 @@ const styles = StyleSheet.create({
     paddingVertical: 12,
     marginVertical: 12,
     borderRadius: 4,
-    backgroundColor: '#413A6F',
+    backgroundColor: '#FFFFFF',
     justifyContent: 'center',
   },
   content: {
@@ -30,7 +30,7 @@ const styles = StyleSheet.create({
     resizeMode: 'contain',
   },
   text: {
-    color: '#F5F4F8',
+    color: '#3D3D4D',
   },
 });
 export default styles;

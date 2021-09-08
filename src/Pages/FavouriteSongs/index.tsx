@@ -1,5 +1,5 @@
 import React from 'react';
-import {SafeAreaView} from 'react-native';
+import {SafeAreaView, View} from 'react-native';
 import {connect} from 'react-redux';
 import List from '../../Components/List';
 import {Header} from '../../Components/Header';
@@ -10,7 +10,11 @@ const FavouriteSongs = ({favouriteSongs, state}) => {
   return (
     <SafeAreaView style={styles.container}>
       <Header />
-      <List data={favouriteSongs && favouriteSongs} />
+      {favouriteSongs.length > 0 && (
+        <View style={{backgroundColor: '#F5F4F8'}}>
+          <List data={favouriteSongs && favouriteSongs} />
+        </View>
+      )}
     </SafeAreaView>
   );
 };

@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import {SafeAreaView, Dimensions} from 'react-native';
+import {SafeAreaView, Dimensions, View} from 'react-native';
 import {requestTrendingSongs} from '../../Service/api';
 import {setTrendingSongs} from '../../Redux/actions/trendingSongs';
 import {connect} from 'react-redux';
@@ -36,8 +36,11 @@ const Home = ({dispatch, searchedSongs, trendingSongs, currentList}) => {
   return (
     <SafeAreaView style={[styles.container, {height: height - tabBarHeight}]}>
       <Header />
-      <SearchInput />
-      <List data={handleLists()} />
+
+      <View style={{backgroundColor: '#F5F4F8'}}>
+        <SearchInput />
+        <List data={handleLists()} />
+      </View>
     </SafeAreaView>
   );
 };
